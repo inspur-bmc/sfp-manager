@@ -13,7 +13,7 @@ sfp_manager_CFLAGS =  \
 
 org/inspur/sfp/server.hpp: ${top_srcdir}/org/inspur/sfp.interface.yaml
 	@mkdir -p `dirname $@`
-	$(SDBUSPLUSPLUS)  interface server-hpp org.inspur.sfp > $@
+	$(SDBUSPLUSPLUS)  -r ${top_srcdir} interface server-header org.inspur.sfp > $@
 org/inspur/sfp/server.cpp: ${top_srcdir}/org/inspur/sfp.interface.yaml
 	@mkdir -p `dirname $@`
-	$(SDBUSPLUSPLUS)  interface server-cpp org.inspur.sfp > $@
+	$(SDBUSPLUSPLUS)  -r ${top_srcdir} interface server-cpp org.inspur.sfp > $@
