@@ -1,0 +1,16 @@
+description: >
+    Implement to provide sfp manager	
+methods:
+    - name: Reset
+      description: >
+          Reset the sfp
+
+properties:
+    - name: LowPowerMode
+      type: boolean
+      description: > 
+          disable/enalbe sfp low-power-mode
+    - name: eeprom
+      type: array[byte]
+      description: > 
+          the raw eeprom value
