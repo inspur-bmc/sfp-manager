@@ -1,0 +1,8 @@
+description: >
+    Implement to provide sfp manager	
+
+properties:
+    - name: Count
+      type: int32
+      description: > 
+          the number of sfps

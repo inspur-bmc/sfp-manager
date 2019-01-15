@@ -1,19 +1,37 @@
+AM_DEFAULT_SOURCE_EXT = .cpp
+
 sbin_PROGRAMS = sfp-manager
 
 sfp_manager_SOURCES = \
-	main.cpp  
-BUILT_SOURCES = org/inspur/sfp/server.hpp \
-		org/inspur/sfp/server.cpp
+	main.cpp  \
+	sfp.cpp \
+	xyz/openbmc_project/Sfp/Sfp/server.cpp \
+	xyz/openbmc_project/Sfp/Manager/server.cpp 
 
-sfp_manager_LDFLAGS = \
-		      $(SDBUSPLUS_LIBS) 
+BUILT_SOURCES = xyz/openbmc_project/Sfp/Sfp/server.hpp \
+		xyz/openbmc_project/Sfp/Sfp/server.cpp \
+		xyz/openbmc_project/Sfp/Manager/server.hpp \
+		xyz/openbmc_project/Sfp/Manager/server.cpp
 
-sfp_manager_CFLAGS =  \
-		      $(SDBUSPLUS_CFLAGS)
+sfp_manager_LDADD = \
+		      $(SDBUSPLUS_LIBS) \
+		      $(SDEVENTPLUS_LIBS) \
+		      $(LIBEVDEV_LIBS)
 
-org/inspur/sfp/server.hpp: ${top_srcdir}/org/inspur/sfp.interface.yaml
+sfp_manager_CXXFLAGS =  \
+		      $(SDBUSPLUS_CFLAGS) \
+		      $(SDEVENTPLUS_CFLAGS) \
+		      $(LIBEVDEV_CFLAGS) 
+
+xyz/openbmc_project/Sfp/Sfp/server.hpp: ${top_srcdir}/xyz/openbmc_project/Sfp/Sfp.interface.yaml
 	@mkdir -p `dirname $@`
-	$(SDBUSPLUSPLUS)  -r ${top_srcdir} interface server-header org.inspur.sfp > $@
-org/inspur/sfp/server.cpp: ${top_srcdir}/org/inspur/sfp.interface.yaml
+	$(SDBUSPLUSPLUS)  -r ${top_srcdir} interface server-header xyz.openbmc_project.Sfp.Sfp > $@
+xyz/openbmc_project/Sfp/Sfp/server.cpp: ${top_srcdir}/xyz/openbmc_project/Sfp/Sfp.interface.yaml
 	@mkdir -p `dirname $@`
-	$(SDBUSPLUSPLUS)  -r ${top_srcdir} interface server-cpp org.inspur.sfp > $@
+	$(SDBUSPLUSPLUS)  -r ${top_srcdir} interface server-cpp xyz.openbmc_project.Sfp.Sfp > $@
+xyz/openbmc_project/Sfp/Manager/server.hpp: ${top_srcdir}/xyz/openbmc_project/Sfp/Manager.interface.yaml
+	@mkdir -p `dirname $@`
+	$(SDBUSPLUSPLUS)  -r ${top_srcdir} interface server-header xyz.openbmc_project.Sfp.Manager > $@
+xyz/openbmc_project/Sfp/Manager/server.cpp: ${top_srcdir}/xyz/openbmc_project/Sfp/Manager.interface.yaml
+	@mkdir -p `dirname $@`
+	$(SDBUSPLUSPLUS)  -r ${top_srcdir} interface server-cpp xyz.openbmc_project.Sfp.Manager > $@

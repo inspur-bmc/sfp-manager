@@ -23,6 +23,15 @@ LT_INIT
 
 # Checks for header files.
 PKG_CHECK_MODULES([SDBUSPLUS], [sdbusplus],, [AC_MSG_ERROR([Could not find sdbusplus...openbmc/sdbusplus package required])])
+PKG_CHECK_MODULES([SDEVENTPLUS], [sdeventplus],, [AC_MSG_ERROR([The openbmc/sdeventplus package is required])])
+PKG_CHECK_MODULES([LIBEVDEV], [libevdev],, [AC_MSG_ERROR([Could not find libevdev...libevdev package required])])
+
+# Download gpio.h from github if necessary.
+AC_CHECK_HEADER(linux/gpio.h,[HAVE_LINUX_GPIO_H=""],[HAVE_LINUX_GPIO_H="-I linux/gpio.h"])
+AS_IF([test "$HAVE_LINUX_GPIO_H" != ""],
+          AC_MSG_WARN([Could not find linux/gpio.h: Attempting to download locally for building from https://raw.githubusercontent.com/torvalds/linux/master/include/uapi/linux/gpio.h])
+              AC_SUBST([BT_BMC_DL],[`mkdir -p linux;wget https://raw.githubusercontent.com/torvalds/linux/master/include/uapi/linux/gpio.h -O linux/gpio.h`])
+              )
 
 AC_PATH_PROG([SDBUSPLUSPLUS], [sdbus++])
 AS_IF([test "x$SDBUSPLUSPLUS" == "x"], AC_MSG_ERROR([Cannot find sdbus++]))
