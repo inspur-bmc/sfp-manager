@@ -1,0 +1,30 @@
+- name: sfp1
+  inventory: /system/chassis/motherboard/sfp1
+  present:
+         key: 133
+         devpath: /dev/gpiochip0
+  reset:
+         key: 124
+         devpath: /dev/gpiochip2
+  low_power_mode: 
+         key: 124
+         devpath: /dev/gpiochi3
+  eeprom: 
+         bus: 2
+         addr: 54
+
+- name: sfp2
+  inventory: /system/chassis/motherboard/sfp2
+  present:
+         key: 134
+         devpath: /dev/gpiochip0
+  reset:
+         key: 125
+         devpath: /dev/gpiochip2
+  low_power_mode: 
+         key: 124
+         devpath: /dev/gpiochi3
+  eeprom: 
+         bus: 2
+         addr: 54
+
