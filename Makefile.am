@@ -5,8 +5,10 @@ sbin_PROGRAMS = sfp-manager
 sfp_manager_SOURCES = \
 	main.cpp  \
 	sfp.cpp \
+	gpio.cpp \
 	xyz/openbmc_project/Sfp/Sfp/server.cpp \
-	xyz/openbmc_project/Sfp/Manager/server.cpp 
+	xyz/openbmc_project/Sfp/Manager/server.cpp \
+	generated.cpp 
 
 BUILT_SOURCES = xyz/openbmc_project/Sfp/Sfp/server.hpp \
 		xyz/openbmc_project/Sfp/Sfp/server.cpp \

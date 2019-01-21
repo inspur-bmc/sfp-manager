@@ -9,7 +9,7 @@ int main()
 
     bus.attach_event(event.get(), SD_EVENT_PRIORITY_NORMAL);
 
-    Manager manager{bus,"/org/inspur/sfp"};
+    phosphor::sfp::Manager manager{bus,"/org/inspur/sfp",event};
     bus.request_name("org.inspur.Sfp");
 
 

@@ -1,0 +1,15 @@
+- name: sfp1
+  inventory: /system/chassis/motherboard/sfp1
+  present:
+        - key: 133
+          devpath: /xxx/xxx
+  reset:
+        - key: 124
+          devpath: /xxx/xxx
+  low_power_mode: 
+        - key: 124
+        - devpath: /xxx/xxx
+  eeprom: 
+        - bus: 2
+          addr: 54
+

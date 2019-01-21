@@ -6,11 +6,15 @@ methods:
           Reset the sfp
 
 properties:
+    - name: Present
+      type: boolean
+      description: > 
+              sfp is present or not,readonly
     - name: LowPowerMode
       type: boolean
       description: > 
-          disable/enalbe sfp low-power-mode
-    - name: eeprom
+          disable/enalbe sfp low-power-mode,read/write
+    - name: Eeprom
       type: array[byte]
       description: > 
-          the raw eeprom value
+          the raw eeprom value,readonly
