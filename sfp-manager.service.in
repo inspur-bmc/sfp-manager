@@ -1,0 +1,10 @@
+[Unit]
+Description=SFP Manager Daemon
+After=systemd-modules-load.service
+
+[Service]
+Restart=always
+ExecStart=@sbindir@/sfp-manager
+
+[Install]
+WantedBy=@SYSTEMD_TARGET@
