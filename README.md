@@ -1,8 +1,3 @@
-# optical module
-
-just a build framework
-
-
 # How To
 
 ```
